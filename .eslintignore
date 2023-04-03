@@ -1,6 +1,5 @@
-.eslintrc.cjs
-.prettierrc
 node_modules
 dist
 webpack.*
 jest.config.js
+.eslintrc.cjs

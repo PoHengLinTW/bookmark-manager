@@ -11,5 +11,11 @@
     "jsx": "react",
     "typeRoots": ["node_modules/@types"],
     "moduleResolution": "node"
-  }
+  },
+  "ts-node": {
+    "moduleTypes": {
+      "jest.config.ts": "cjs"
+    }
+  },
+  "exclude": ["jest.config.ts"]
 }

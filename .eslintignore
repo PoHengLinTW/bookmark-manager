@@ -1,5 +1,5 @@
 node_modules
 dist
 webpack.*
-jest.config.js
+jest.config.ts
 .eslintrc.cjs

@@ -1,12 +1,7 @@
-import { createLogger, transports, format } from "winston";
+const isDev: boolean = process.env.NODE_ENV === "development";
 
-export const logger = createLogger({
-  transports: [new transports.Console()],
-  format: format.combine(
-    format.colorize(),
-    format.timestamp(),
-    format.printf(
-      ({ timestamp, level, message }) => `[${timestamp}] ${level}: ${message}`
-    )
-  ),
-});
+export const logger = {
+  debug: isDev ? console.log : console.debug,
+  info: console.log,
+  error: console.error,
+};

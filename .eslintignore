@@ -3,3 +3,4 @@ dist
 webpack.*
 jest.config.ts
 .eslintrc.cjs
+src/types

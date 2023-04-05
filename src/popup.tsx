@@ -1,9 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { createRoot } from 'react-dom/client';
+import React, { useEffect, useState } from "react";
+import { createRoot } from "react-dom/client";
+import {
+  ChakraProvider,
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  Box,
+} from "@chakra-ui/react";
+import MyCollectionPage from "./popup/components/my-collection";
+import Setting from "./popup/components/setting";
+import { BookmarkManager } from "./popup/components/bookmark-manager";
+
+const TabStyle = {
+  size: "sm",
+  variant: "soft-rounded",
+  colorScheme: "green",
+};
 
 const Popup = () => {
   const [count, setCount] = useState(0);
-  const [currentURL, setCurrentURL] = useState<string>();
 
   useEffect(() => {
     chrome.action
@@ -14,50 +31,36 @@ const Popup = () => {
       .catch((err) => console.error(err));
   }, [count]);
 
-  useEffect(() => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      setCurrentURL(tabs[0].url);
-    });
-  }, []);
-
-  const changeBackground = () => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      const tab = tabs[0];
-      if (tab.id) {
-        chrome.tabs.sendMessage(
-          tab.id,
-          {
-            color: '#555555',
-          },
-          (msg) => {
-            console.log('result message:', msg);
-          }
-        );
-      }
-    });
-  };
-
   return (
-    <>
-      <ul style={{ minWidth: '700px' }}>
-        <li>Current URL: {currentURL}</li>
-        <li>Current Time: {new Date().toLocaleTimeString()}</li>
-      </ul>
-      <button
-        onClick={() => setCount(count + 1)}
-        style={{ marginRight: '5px' }}
-      >
-        count up
-      </button>
-      <button onClick={changeBackground}>change background</button>
-    </>
+    <Tabs {...TabStyle}>
+      <TabList>
+        <Tab>Bookmark Manager</Tab>
+        <Tab>My Collections</Tab>
+        <Tab>Setting</Tab>
+      </TabList>
+      <TabPanels>
+        <TabPanel>
+          <BookmarkManager />
+        </TabPanel>
+        <TabPanel>
+          <MyCollectionPage />
+        </TabPanel>
+        <TabPanel>
+          <Setting />
+        </TabPanel>
+      </TabPanels>
+    </Tabs>
   );
 };
 
-const root = createRoot(document.getElementById('root')!);
+const root = createRoot(document.getElementById("root")!);
 
 root.render(
   <React.StrictMode>
-    <Popup />
+    <ChakraProvider>
+      <Box boxSize="md" p="10px">
+        <Popup />
+      </Box>
+    </ChakraProvider>
   </React.StrictMode>
 );

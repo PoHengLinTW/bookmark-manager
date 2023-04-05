@@ -27,3 +27,5 @@ export const BookmarkManager = () => {
     </Card>
   );
 };
+
+export default BookmarkManager;

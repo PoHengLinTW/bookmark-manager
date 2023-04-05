@@ -9,9 +9,9 @@ import {
   TabPanel,
   Box,
 } from "@chakra-ui/react";
-import MyCollectionPage from "./popup/components/my-collection";
-import Setting from "./popup/components/setting";
-import { BookmarkManager } from "./popup/components/bookmark-manager";
+import MyCollectionPage from "./popup/my-collections";
+import Setting from "./popup/setting";
+import BookmarkManager from "./popup/bookmark-manager";
 
 const TabStyle = {
   size: "sm",
@@ -24,7 +24,7 @@ const Popup = () => {
 
   useEffect(() => {
     chrome.action
-      .setBadgeText({ text: count.toString() })
+      .setBadgeText({ text: "hello" })
       .then((result) => {
         console.log(result);
       })

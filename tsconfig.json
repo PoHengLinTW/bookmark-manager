@@ -10,7 +10,8 @@
     "noEmitOnError": true,
     "jsx": "react",
     "typeRoots": ["node_modules/@types"],
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "skipLibCheck": true
   },
   "ts-node": {
     "moduleTypes": {

@@ -7,6 +7,7 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { CardStyle } from "../../commonStyle";
+import BookmarkDataTable from "./BookmarkDataTable";
 
 export const MyCollectionPage = () => {
   return (
@@ -14,7 +15,9 @@ export const MyCollectionPage = () => {
       <CardHeader>
         <Heading size="md">My Collections</Heading>
       </CardHeader>
-      <CardBody></CardBody>
+      <CardBody>
+        <BookmarkDataTable />
+      </CardBody>
       <CardFooter></CardFooter>
     </Card>
   );
